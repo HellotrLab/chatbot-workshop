@@ -5,13 +5,13 @@ from llama_index.embeddings.gemini import GeminiEmbedding
 
 
 st.set_page_config(page_title="Chat with an expert on the works of A Dollhouse", page_icon="🦙", layout="centered", initial_sidebar_state="auto", menu_items=None)
-st.title("Chat with an expert on the works of Rabindranath Tagore")
+st.title("Chat with an expert on the works of A Dollhouse")
 
 
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
     st.session_state.messages = [
         {
-            "role": "assistant",
+            "role": "Playwright Assistant",
             "content": "Ask me a question about A Dollhouse!!",
         }
     ]
@@ -67,7 +67,7 @@ if "chat_engine" not in st.session_state.keys():  # Initialize the chat engine
     )
 
 if prompt := st.chat_input(
-    "Ask a question"
+    "Ask a question or comment"
 ):  # Prompt for user input and save to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
@@ -88,7 +88,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
                 try:
                     st.write_stream(response_stream.response_gen)
                 except:
-                    st.error("We hit a bump - let's try again")
+                    st.error("We hitteth a bumpeth - alloweth's tryeth again")
                     try:
                         resp = st.session_state.chat_engine.chat(prompt)[0]
                         st.write(resp)
